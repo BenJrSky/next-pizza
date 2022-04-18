@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Slider from './components/Slider'
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
         <meta name="description" content="Best pizza in town" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <Slider/>
 
       <h1>home page</h1>
       <Image width="40px" height="40px" src="/img/logo.png" />
