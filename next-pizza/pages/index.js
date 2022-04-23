@@ -13,12 +13,6 @@ export default function Home() {
       </Head>
       <Slider/>
       <PizzaList/>
-
-      <h1>home page</h1>
-      <Image width="40px" height="40px" src="/img/logo.png" />
-
-
-
     </div>
   )
 }
