@@ -8,7 +8,7 @@ const Cart = ()=> {
         <div className={styles.container}>
             <div className={styles.left}>
                 <table className={styles.table}>
-                    <tr className={styles.tr}>
+                    <tr className={styles.trTitle}>
                         <th className={styles.td}>Product</th>
                         <th className={styles.td}>Name</th>
                         <th className={styles.td}>Extras</th>
