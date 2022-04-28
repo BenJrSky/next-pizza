@@ -85,3 +85,26 @@
     font-weight: 500;
     color: #d1411e;
 }
+
+
+@media screen and (max-width:420px) {
+
+    .container{
+        padding: 0 20px;
+    }
+
+    .item:nth-child(1){
+        flex: 6;
+    }
+
+    .item:nth-child(2){
+        display: none;
+    }
+
+    .text:last-child{
+        font-size: 18px;
+        font-weight: 800;
+    }
+    
+    
+}

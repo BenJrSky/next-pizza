@@ -34,3 +34,33 @@
 .motto{
     color: #b0acac;
 }
+
+
+@media screen and (max-width:420px) {
+
+    .container{
+        height: auto;
+        text-align: center;
+    }
+
+    .item:nth-child(1){
+        display: none;
+    }
+
+    .item{
+        flex-direction: column;
+    }
+
+    .card{
+        padding: 0px;
+    }
+
+    .title{
+        font-size: 30px
+    }
+
+    .text{
+        font-size: 20px;
+    }
+
+}
