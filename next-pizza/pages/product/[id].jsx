@@ -2,17 +2,9 @@ import styles from "../../styles/Product.module.css";
 import Image from "next/image";
 import { useState } from "react";
 
-const Product = ()=>{
+const Product = ({pizza})=>{
 
     const [size, setSize] = useState(0);
-
-    const pizza = {
-        id:1,
-        img: '/img/pizza.png',
-        name: "campagnola",
-        price: [19.9, 23.9, 27.9],
-        desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, eveniet quas molestiae sapiente enim voluptatum suscipit, sunt blanditiis quidem beatae neque, a libero unde maxime ut in fugit impedit veniam.'
-    };
 
     return(
         <div className={styles.container}>
@@ -22,8 +14,8 @@ const Product = ()=>{
                 </div>
             </div>
             <div className={styles.right}>
-                <h1 className={styles.title}>{pizza.name}</h1>
-                <span className={styles.price}>${pizza.price[size]}</span>
+                <h1 className={styles.title}>{pizza.title}</h1>
+                <span className={styles.price}>${pizza.prices[size]}</span>
                 <p className={styles.desc}>{pizza.desc}</p>
                 <h3 className={styles.choose}>Choose the size</h3>
                 <div className={styles.sizes}>
@@ -67,6 +59,30 @@ const Product = ()=>{
         </div>
     )
 
+}
+
+export const getServerSideProps = async ({params})=>{
+
+    const url = `http://localhost:3000/api/products/${params.id}`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+  
+    const request = await fetch(url,options);
+    const response = await request.json();
+  
+    console.log(response)
+  
+    return {
+      props:{
+        pizza: response.product
+      }
+    }
+  
 }
 
 export default Product

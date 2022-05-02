@@ -3,7 +3,7 @@ import Image from 'next/image'
 import PizzaList from './components/PizzaLista'
 import Slider from './components/Slider'
 
-export default function Home() {
+export default function Home({pizzaList}) {
   return (
     <div>
       <Head>
@@ -12,7 +12,31 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Slider/>
-      <PizzaList/>
+      <PizzaList pizzaList={pizzaList}/>
     </div>
   )
+}
+
+export const getServerSideProps = async ()=>{
+
+  const url = "http://localhost:3000/api/products";
+  const options = {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }
+
+  const request = await fetch(url,options);
+  const response = await request.json();
+
+  console.log(response)
+
+  return {
+    props:{
+      pizzaList: response.products
+    }
+  }
+
 }

@@ -1,0 +1,18 @@
+
+
+POST http://localhost:3000/api/products
+Content-Type:application/json
+Accept:application/json
+
+{
+    "title":"pizza capricciosa",
+    "img":"/img/pizza.png",
+    "desc":"mozzarella, pomodoro, olive, prosciutto e funghi",
+    "prices":[5,7,10],
+    "extraOptions":[{"text":"Double prosciutto", "price":2},{"text":"Double funghi", "price":2}]
+}
+
+
+########
+
+GET http://localhost:3000/api/products
