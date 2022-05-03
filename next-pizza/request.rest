@@ -13,6 +13,9 @@ Accept:application/json
 }
 
 
-########
-
+#####################
 GET http://localhost:3000/api/products
+
+
+#####################
+GET http://localhost:3000/api/products/626ff6b039b16a1453b3fb72
