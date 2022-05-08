@@ -57,6 +57,20 @@
     margin-top: 20px;
 }
 
+.paymentMethods{
+    display:flex;
+    width: 100% ;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.payButton{
+    margin: 10px 0 10px;
+    width: 100%;
+    padding: 5px;
+    cursor: pointer;
+}
+
 @media screen and (max-width:420px) {
 
     .container{
@@ -114,18 +128,6 @@
 
     .wrapper{
         width: 100%;
-    }
-
-    .paymentMethods{
-        display:flex;
-        flex-direction: column;
-        margin-top: 10px;
-    }
-
-    .payButton{
-        background-color: #d1411e;
-        padding: 5px;
-        cursor: pointer;
     }
 
 }

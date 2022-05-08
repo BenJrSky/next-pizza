@@ -105,9 +105,7 @@ export const getServerSideProps = async ({params})=>{
   
     const request = await fetch(url,options);
     const response = await request.json();
-  
-    console.log(response)
-  
+    
     return {
       props:{
         pizza: response.product

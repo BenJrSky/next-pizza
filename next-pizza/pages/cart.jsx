@@ -14,6 +14,8 @@ const Cart = ()=> {
 
     const [open, setOpen] = useState(false);
 
+
+
     const amount  = 2;
     const currency = "USD";
     const style = {'layout':'vertical'};
@@ -25,17 +27,7 @@ const Cart = ()=> {
 
         const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
     
-        useEffect(() => {
-            dispatch({
-                type: "resetOptions",
-                value: {
-                    ...options,
-                    currency: currency,
-                },
-            });
-        }, [currency, showSpinner]);
-    
-    
+       
         return (<>
 
                 { (showSpinner && isPending) && <div className="spinner" /> }
@@ -62,7 +54,7 @@ const Cart = ()=> {
                                 return orderId;
                             });
                     }}
-                    onApprove={(data, actions)=> {
+                    onApprove={ function(data, actions) {
                         return actions.order.capture().then(function () {
                             // Your code here after capture the order
                         });
@@ -77,6 +69,7 @@ const Cart = ()=> {
             <div className={styles.left}>
                 <table className={styles.table}>
                     <tr className={styles.trTitle}>
+                    <th className={styles.td}>Product</th>
                         <th className={styles.td}>Product</th>
                         <th className={styles.td}>Name</th>
                         <th className={styles.td}>Extras</th>
@@ -84,7 +77,6 @@ const Cart = ()=> {
                         <th className={styles.td}>Quantity</th>
                         <th className={styles.td}>Total</th>
                     </tr>
-
 
                     {cart.products.map(product=>(
 
@@ -138,11 +130,11 @@ const Cart = ()=> {
                         <div className={styles.paymentMethods}>
                             <button className={styles.payButton}>CASH ON DELIVERY</button>
                             <PayPalScriptProvider
-                            options={{
-                                "client-id": "test",
-                                components: "buttons",
-                                currency: "USD",
-                                "disable-funding": "credit,card,p24,sofort"
+                                options={{
+                                    "client-id": "test",
+                                    components: "buttons",
+                                    currency: "USD",
+                                    "disable-funding": "card,credit,p24,sofort,mybank"
                                 }}>
                                 <ButtonWrapper
                                     currency={currency}

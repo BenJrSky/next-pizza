@@ -22,8 +22,6 @@ const Slider = ()=>{
         }
     }
 
-    console.log(index)
-
     return(
         <div className={styles.container}>
             <div className={styles.arrowContainer} style={{left:0}} onClick={()=>handleArrow("l")}>
