@@ -116,4 +116,16 @@
         width: 100%;
     }
 
+    .paymentMethods{
+        display:flex;
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    .payButton{
+        background-color: #d1411e;
+        padding: 5px;
+        cursor: pointer;
+    }
+
 }

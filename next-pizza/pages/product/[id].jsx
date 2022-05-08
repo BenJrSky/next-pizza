@@ -60,14 +60,17 @@ const Product = ({pizza})=>{
                     <div className={styles.size} onClick={()=>handleSize(0)}>
                         <Image src='/img/size.png' layout="fill" />
                         <span className={styles.number}>Small</span>
+                    { size==0 && (<div className={styles.check}> <Image src='/img/check.png' layout="fill" /></div>) }
                     </div>
                     <div className={styles.size} onClick={()=>handleSize(1)}>
                         <Image src='/img/size.png' layout="fill" />
                         <span className={styles.number}>Medium</span>
+                    { size==1 && (<div className={styles.check}> <Image src='/img/check.png' layout="fill" /></div>) }
                     </div>
                     <div className={styles.size} onClick={()=>handleSize(2)}>
                         <Image src='/img/size.png' layout="fill" />
                         <span className={styles.number}>Large</span>
+                    { size==2 && (<div className={styles.check}> <Image src='/img/check.png' layout="fill" /></div>) }
                     </div>
                 </div>
                 <h3 className={styles.chhose}>Choose additional ingredients</h3>

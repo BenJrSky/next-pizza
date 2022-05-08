@@ -11,10 +11,9 @@ const PizzaList = ({pizzaList})=>{
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia similique reprehenderit iure. Eum, tenetur alias excepturi ratione laboriosam provident perferendis, nihil eaque fugit placeat corrupti ea ab nostrum at libero?
             </p>
             <div className={styles.wrapper}>
-                {pizzaList.map(pizza=>(
+                {pizzaList && pizzaList.map(pizza=>(
                     <PizzaCard key={pizza._id} pizza={pizza}/>
                 ))}
-                
             </div>
         </div>
 

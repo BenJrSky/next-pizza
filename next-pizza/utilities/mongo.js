@@ -8,9 +8,6 @@ if (!MONGO_URL) {
   )
 }
 
-    console.log("------>")
-    console.log(MONGO_URL)
-
 let cached = global.mongoose
 
 if (!cached) {
