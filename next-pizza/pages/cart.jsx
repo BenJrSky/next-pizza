@@ -8,20 +8,49 @@ import {
     PayPalButtons,
     usePayPalScriptReducer
 } from "@paypal/react-paypal-js";
-
+import { useRouter } from 'next/router';
+import { reset } from '../redux/cartSlice';
 
 const Cart = ()=> {
 
+    const cart = useSelector(state=>state.cart);
+
     const [open, setOpen] = useState(false);
 
-
-
-    const amount  = 2;
+    const amount  = cart.total;
     const currency = "USD";
     const style = {'layout':'vertical'};
 
     const dispatch = useDispatch();
-    const cart = useSelector(state=>state.cart);
+    const router = useRouter();
+
+    const createOrder = async (data)=>{
+        try{
+
+            const url = "http://localhost:3000/api/orders";
+            const options = {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body:JSON.stringify(data)
+            }
+          
+            const request = await fetch(url,options);
+            const response = await request.json();
+
+            if(request.status===201){
+                router.push('/orders/'+response._id)
+                await dispatch(reset());
+            }
+            
+
+        }catch(err){
+            console.log(err)
+        }
+
+    }
 
     const ButtonWrapper = ({ currency, showSpinner }) => {
 
@@ -55,8 +84,19 @@ const Cart = ()=> {
                             });
                     }}
                     onApprove={ function(data, actions) {
-                        return actions.order.capture().then(function () {
-                            // Your code here after capture the order
+                        return actions.order.capture().then(function (details) {
+
+                            const shipping = details.purchase_units[0].shipping;
+
+                            createOrder({
+                                customer: shipping.name.full_name,
+                                address: shipping.address.address_line_1,
+                                total:cart.total,
+                                method:1,
+                            })
+
+
+
                         });
                     }}
                 />
@@ -109,8 +149,6 @@ const Cart = ()=> {
 
                     ))}
 
-
-                    
                 </table>
             </div>
             <div className={styles.right}>
@@ -131,7 +169,7 @@ const Cart = ()=> {
                             <button className={styles.payButton}>CASH ON DELIVERY</button>
                             <PayPalScriptProvider
                                 options={{
-                                    "client-id": "test",
+                                    "client-id": "AZ11ISZcZHj37AMIlbCD1AqFqMsdbcex_QJ_hAWE_2OZacxRWA-86wj6LxFFxsZtVOaYyU76_E51gXuI",
                                     components: "buttons",
                                     currency: "USD",
                                     "disable-funding": "card,credit,p24,sofort,mybank"
