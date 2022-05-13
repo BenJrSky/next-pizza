@@ -2,7 +2,7 @@ import styles from '../../styles/OrderDetails.module.css';
 import { useState } from 'react';
 
 
-const OrderDetail = ({total, createOrder})=>{
+const OrderDetail = ({total, createOrder,state})=>{
 
     const [customer, setCustomer] = useState("");
     const [address, setAddress] = useState("");
@@ -12,9 +12,15 @@ const OrderDetail = ({total, createOrder})=>{
         createOrder({customer,address,total, method:0 })
     }
 
+    const handleClose = ()=>{
+        state(false);
+    }
+
     return(
         <div className={styles.container}>
             <div className={styles.wrapper}>
+                <button className={styles.close} onClick={handleClose}>X</button>
+
                 <h1 className={styles.title}>You willp pay $12 after delivery</h1>
                 <div className={styles.item}>
                     <label className={styles.label}>Name Surname</label>

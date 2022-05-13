@@ -5,11 +5,11 @@ Content-Type:application/json
 Accept:application/json
 
 {
-    "title":"pizza capricciosa",
+    "title":"Pizza Frutti di Mare",
     "img":"/img/pizza.png",
-    "desc":"mozzarella, pomodoro, olive, prosciutto e funghi",
-    "prices":[5,7,10],
-    "extraOptions":[{"text":"Double prosciutto", "price":2},{"text":"Double funghi", "price":2}]
+    "desc":"mozzarella, pomodoro, gamberi, cozze, arselle",
+    "prices":[6,8,10],
+    "extraOptions":[{"text":"Pomodorini", "price":1},{"text":"Polpo", "price":4}]
 }
 
 
