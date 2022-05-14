@@ -9,7 +9,7 @@ import {
     usePayPalScriptReducer
 } from "@paypal/react-paypal-js";
 import { useRouter } from 'next/router';
-import { reset } from '../redux/cartSlice';
+import { reset, deleteProduct } from '../redux/cartSlice';
 import OrderDetail from './components/OrderDetail';
 
 const Cart = ()=> {
@@ -25,6 +25,10 @@ const Cart = ()=> {
 
     const dispatch = useDispatch();
     const router = useRouter();
+
+    const handleDelete = async (id)=>{
+        await dispatch(deleteProduct(id));
+    }
 
     const createOrder = async (data)=>{
         try{
@@ -111,7 +115,7 @@ const Cart = ()=> {
             <div className={styles.left}>
                 <table className={styles.table}>
                     <tr className={styles.trTitle}>
-                    <th className={styles.td}>Product</th>
+                        <th className={styles.td}></th>
                         <th className={styles.td}>Product</th>
                         <th className={styles.td}>Name</th>
                         <th className={styles.td}>Extras</th>
@@ -123,6 +127,9 @@ const Cart = ()=> {
                     {cart.products.map(product=>(
 
                         <tr className={styles.tr} key={product._id}>
+                            <td>
+                                <span className={styles.close} onClick={()=>handleDelete(product.cartId)}>X</span>
+                            </td>
                             <td>
                                 <div className={styles.imgContainer}>
                                     <Image src={product.img} layout='fill' objectFit='cover'/>

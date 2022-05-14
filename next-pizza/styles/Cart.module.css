@@ -77,6 +77,13 @@
     cursor: pointer;
 }
 
+.close{
+    cursor: pointer;
+    color: #d1411e;
+    font-size: 16px;
+    font-weight: 800;
+}
+
 @media screen and (max-width:420px) {
 
     .container{

@@ -29,7 +29,7 @@ export const getServerSideProps = async ()=>{
   }
 
   const request = await fetch(url,options);
-  const response = await request.json();
+  const response = request ? await request.json() : {};
 
   return {
     props:{
