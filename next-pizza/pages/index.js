@@ -29,6 +29,9 @@ export const getServerSideProps = async ()=>{
   }
 
   const request = await fetch(url,options);
+
+  console.log(request)
+
   const response = request ? await request.json() : {};
 
   return {
