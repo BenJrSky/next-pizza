@@ -7,6 +7,7 @@ const index = ({orders, products}) =>{
 
     const [productList, setProductList] = useState(products);
     const [orderList, setOrderList]= useState(orders);
+    const status = ['Preparing','On the way', 'Delivered'];
 
     const handleDelete = async (id)=>{
 
@@ -77,11 +78,10 @@ const index = ({orders, products}) =>{
                                     <td>
                                     {order._id.slice(0,5)}... 
                                     </td>
-                                    <td>{order.Customer}</td>
+                                    <td>{order.customer}</td>
                                     <td>${order.total}</td>
-                                    <td>Card</td>
-                                    <td>Paid</td>
-                                    <td>Praparing</td> 
+                                    <td>{order.method == 0 ? (<span>Cash</span>) : (<span>Paid</span>)}</td>
+                                    <td>{status[order.status]}</td>
                                     <td>
                                         <button className={styles.next}>Next Stage</button>
                                     </td>
