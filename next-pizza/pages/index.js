@@ -1,7 +1,8 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import PizzaList from './components/PizzaLista'
-import Slider from './components/Slider'
+import Head from 'next/head';
+import Image from 'next/image';
+import axios from 'axios';
+import PizzaList from './components/PizzaLista';
+import Slider from './components/Slider';
 
 export default function Home({pizzaList}) {
   return (
@@ -28,11 +29,11 @@ export const getServerSideProps = async ()=>{
     }
   }
 
-  const request = await fetch(url,options);
+  const request = await axios.get(url);
 
   console.log(request)
 
-  const response = request ? await request.json() : {};
+  const response = request ? await request.data : [];
 
   return {
     props:{

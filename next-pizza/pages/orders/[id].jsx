@@ -19,6 +19,8 @@ const Order = ({order}) =>{
             return styles.undone
         }
 
+        return styles.done
+
     };
 
     return(
@@ -26,26 +28,30 @@ const Order = ({order}) =>{
             <div className={styles.left}>
                 <div className={styles.row}>
                     <table className={styles.table}>
-                        <tr className={styles.trTitle}>
-                            <th className={styles.td}>Order ID</th>
-                            <th className={styles.td}>Customer</th>
-                            <th className={styles.td}>Address</th>
-                            <th className={styles.td}>Total</th>
-                        </tr>
-                        <tr className={styles.tr}>
-                            <td>
-                                <span className={styles.id}>{order._id}</span>
-                            </td>
-                            <td>
-                                <span className={styles.name}>{order.customer}</span>
-                            </td>
-                            <td>
-                                <span className={styles.address}>{order.address}</span>
-                            </td>
-                            <td>
-                                <span className={styles.total}>${order.total}</span>
-                            </td>
-                        </tr>
+                        <thead>
+                            <tr className={styles.trTitle}>
+                                <th className={styles.td}>Order ID</th>
+                                <th className={styles.td}>Customer</th>
+                                <th className={styles.td}>Address</th>
+                                <th className={styles.td}>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr className={styles.tr}>
+                                <td>
+                                    <span className={styles.id}>{order._id}</span>
+                                </td>
+                                <td>
+                                    <span className={styles.name}>{order.customer}</span>
+                                </td>
+                                <td>
+                                    <span className={styles.address}>{order.address}</span>
+                                </td>
+                                <td>
+                                    <span className={styles.total}>${order.total}</span>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
                 <div className={styles.row}>
