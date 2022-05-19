@@ -19,6 +19,20 @@
     flex-wrap: wrap;
 }
 
+.add{
+    padding: 10px;
+    margin: 20px;
+    background-color: #d1411e;
+    width: 150px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    border: none;
+    align-self:flex-start;
+    cursor: pointer;
+}
+
 
 @media screen and (max-width:420px) {
 

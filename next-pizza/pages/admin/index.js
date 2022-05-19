@@ -2,12 +2,13 @@ import styles from '../../styles/Admin.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
 import axios from 'axios';
+import {checkCookies} from '../../services/checkCookies';
 
 const index = ({orders, products}) =>{
 
     const [productList, setProductList] = useState(products);
     const [orderList, setOrderList]= useState(orders);
-    const status = ['Preparing','On the way', 'Delivered','Completed'];
+    const status = ['Preparing','On the way', 'Delivered'];
 
     const handleDelete = async (id)=>{
 
@@ -24,7 +25,7 @@ const index = ({orders, products}) =>{
         const item = orderList.find(order=>order._id==id);
         const currentStatus = item.status
 
-        if(currentStatus<3){
+        if(currentStatus<2){
             try{
                 const response = await axios.put('http://localhost:3000/api/orders/'+id, {status:currentStatus+1});
                 setOrderList([response.data, ...orderList.filter(order=>order._id!==id)]);
@@ -98,7 +99,12 @@ const index = ({orders, products}) =>{
                                     <td>{order.method == 0 ? (<span>Cash</span>) : (<span>Paid</span>)}</td>
                                     <td>{status[order.status]}</td>
                                     <td>
-                                        <button className={styles.next} onClick={()=>handleStatus(order._id)}>Next Stage</button>
+
+                                        {
+                                            order.status <2 ? ( <button className={styles.next} onClick={()=>handleStatus(order._id)}>Next Stage</button>) : ( <span className={styles.completed}>Completed</span>)
+                                        }
+
+                                       
                                     </td>
                                 </tr>
                             </tbody>
@@ -118,18 +124,7 @@ const index = ({orders, products}) =>{
 
 export const getServerSideProps = async (ctx)=>{
 
-    const myCookie = ctx.req?.cookies ||  "";
-
-    console.log(process.env.TOKEN)
-
-    if(myCookie.token !== process.env.TOKEN){
-        return{
-            redirect:{
-                destination:'/login',
-                permanent:false
-            }
-        }
-    }
+    checkCookies(ctx);
 
     const productsUrl = "http://localhost:3000/api/products";
     const ordersUrl = "http://localhost:3000/api/orders";

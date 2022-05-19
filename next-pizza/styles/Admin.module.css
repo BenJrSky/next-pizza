@@ -38,3 +38,12 @@
     padding: 5px 10px;
     background-color: forestgreen;
 }
+
+.completed{
+    border: none;
+    color: forestgreen;
+    cursor: not-allowed;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: white;
+}

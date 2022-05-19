@@ -3,8 +3,9 @@ import Image from 'next/image';
 import axios from 'axios';
 import PizzaList from './components/PizzaLista';
 import Slider from './components/Slider';
+import { isCorrect } from '../services/checkCookies';
 
-export default function Home({pizzaList}) {
+export default function Home({pizzaList,isAdmin}) {
   return (
     <div>
       <Head>
@@ -13,12 +14,14 @@ export default function Home({pizzaList}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Slider/>
-      <PizzaList pizzaList={pizzaList}/>
+      <PizzaList isAdmin={isAdmin} pizzaList={pizzaList}/>
     </div>
   )
 }
 
-export const getServerSideProps = async ()=>{
+export const getServerSideProps = async (ctx)=>{
+
+  const isAdmin = isCorrect(ctx);
 
   const url = "http://localhost:3000/api/products";
   const options = {
@@ -37,7 +40,8 @@ export const getServerSideProps = async ()=>{
 
   return {
     props:{
-      pizzaList: response.products
+      pizzaList: response.products,
+      isAdmin: isAdmin
     }
   }
 

@@ -31,6 +31,9 @@ const Navbar = ()=>{
                     <li className={styles.listItem}>Events</li>
                     <li className={styles.listItem}>Blog</li>
                     <li className={styles.listItem}>Contacts</li>
+                    <Link href='/login'>
+                        <li className={styles.listItem}>Login</li>
+                    </Link>
                 </ul>
             </div>
             <Link href='/cart'>
