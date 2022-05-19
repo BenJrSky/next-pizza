@@ -116,19 +116,26 @@ const index = ({orders, products}) =>{
 
 }
 
-export const getServerSideProps = async ()=>{
+export const getServerSideProps = async (ctx)=>{
 
-    console.log("----->")
+    const myCookie = ctx.req?.cookies ||  "";
 
-    
+    console.log(process.env.TOKEN)
+
+    if(myCookie.token !== process.env.TOKEN){
+        return{
+            redirect:{
+                destination:'/login',
+                permanent:false
+            }
+        }
+    }
+
     const productsUrl = "http://localhost:3000/api/products";
     const ordersUrl = "http://localhost:3000/api/orders";
 
     const productRes = await axios.get(productsUrl);
     const ordersRes = await axios.get(ordersUrl);
-
-    console.log("----->")
-    console.log(ordersRes)
 
     return {
         props: {
