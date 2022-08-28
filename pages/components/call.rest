@@ -1,0 +1,3 @@
+POST https://test.api.retailtune.com/api/v1/salesforce/endpoint
+Content-Type:application/json
+Authorization:Bearer vnpV12mXKZzxjrmAal5OAJUOUskPKwhiZ69uU2rHFFpBkOypnZR5tm2EgiKCnoVXRexpgnYT9194Jg4CxApwRIvpVqSiso9M39lj
